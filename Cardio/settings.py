@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--8_y0!(9s90z2*n!*4ez0
 DEBUG = False
 
 # CHANGED: Add your Render app's URL here
-ALLOWED_HOSTS = ['heart-disease-predictor.onrender.com']
+ALLOWED_HOSTS = ['heart-disease-predictor-l2md.onrender.com']
 
 
 # Application definition
