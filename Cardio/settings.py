@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os # Import the os module
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--8_y0!(9s90z2*n!*4ez0vb9hj_gn7v+iln*u24l_5&z-adg0o'
+# It's better to load this from an environment variable in production
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--8_y0!(9s90z2*n!*4ez0vb9hj_gn7v+iln*u24l_5&z-adg0o')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# CHANGED: Set to False for deployment
+DEBUG = False
 
-ALLOWED_HOSTS = []
+# CHANGED: Add your Render app's URL here
+ALLOWED_HOSTS = ['heart-disease-predictor.onrender.com']
 
 
 # Application definition
@@ -101,13 +105,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# https://docs.djangoproject.com/en/5.2/topics/i1n/
 
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_I1N = True
 
 USE_TZ = True
 
@@ -116,7 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'images']
+
+# CHANGED: This should point to your 'static' folder, not 'images'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# ADDED: This is the required setting for the `collectstatic` command
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
